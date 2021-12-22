@@ -9,6 +9,9 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+*.plist
+.env
+google-services.json
 
 # macOS
 .DS_Store
