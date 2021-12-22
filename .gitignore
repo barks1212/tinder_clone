@@ -12,6 +12,6 @@ web-build/
 *.plist
 .env
 google-services.json
-
+firebaseConfig.js
 # macOS
 .DS_Store
