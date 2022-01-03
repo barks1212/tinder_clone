@@ -1,5 +1,4 @@
 import React, { useLayoutEffect } from "react";
-import { useNavigation } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -12,13 +11,6 @@ import useAuth from "../hooks/useAuth";
 
 const LoginScreen = () => {
   const { signInWithGoogle, loading } = useAuth();
-  const navigation = useNavigation();
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-    });
-  }, []);
 
   return (
     <View style={tw("flex-1")}>
