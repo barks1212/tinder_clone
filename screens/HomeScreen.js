@@ -6,8 +6,10 @@ import {
   collection,
   setDoc,
   getDocs,
+  getDoc,
   query,
   where,
+  serverTimestamp,
 } from "@firebase/firestore";
 import {
   View,
@@ -24,6 +26,7 @@ import Swiper from "react-native-deck-swiper";
 import { db } from "../firebase";
 import useAuth from "../hooks/useAuth";
 import { colours, dummyData } from "../constants";
+import { generateId } from "../utils/utils";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -89,11 +92,44 @@ const HomeScreen = () => {
     setDoc(doc(db, "users", user.uid, "passes", userSwiped.id), userSwiped);
   };
 
-  const swipeRight = (cardIndex) => {
+  const swipeRight = async (cardIndex) => {
     if (!profiles[cardIndex]) return;
 
     const userSwiped = profiles[cardIndex];
-    console.log(`You swiped on ${userSwiped.displayName} (${userSwiped.job})`);
+
+    const loggedInProfile = await (
+      await getDoc(doc(db, "users", user.uid))
+    ).data();
+
+    getDoc(doc(db, "users", userSwiped.id, "swipes", user.uid)).then(
+      (documentSnapshot) => {
+        if (documentSnapshot.exists()) {
+          console.log(`You MATCHED with ${userSwiped.displayName}`);
+          setDoc(
+            doc(db, "users", user.uid, "swipes", userSwiped.id),
+            userSwiped
+          );
+
+          setDoc(doc(db, "matches", generateId(user.uid, userSwiped.id)), {
+            users: {
+              [user.uid]: loggedInProfile,
+              [userSwiped.id]: userSwiped,
+            },
+            usersMatched: [user.uid, userSwiped.id],
+            timestamp: serverTimestamp(),
+          });
+
+          navigation.navigate("Match", {
+            loggedInProfile,
+            userSwiped,
+          });
+        } else {
+          console.log(
+            `You swiped on ${userSwiped.displayName} (${userSwiped.job})`
+          );
+        }
+      }
+    );
 
     setDoc(doc(db, "users", user.uid, "swipes", userSwiped.id), userSwiped);
   };
