@@ -4,6 +4,21 @@ export const colours = {
   swiperBackground: "#4FD0E9",
 };
 
+export const styleSheets = {
+  cardShadows: {
+    cardShadow: {
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 1,
+      },
+      shadowOpacity: 0.2,
+      shadowRadius: 1.41,
+      elevation: 2,
+    },
+  },
+};
+
 export const dummyData = [
   {
     firstName: "Will",

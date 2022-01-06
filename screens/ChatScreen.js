@@ -1,11 +1,15 @@
 import React from "react";
-import { View, Text } from "react-native";
+import tw from "tailwind-rn";
+import { View, Text, SafeAreaView } from "react-native";
+import Header from "../components/Header";
+import ChatList from "../components/ChatList";
 
 const ChatScreen = () => {
   return (
-    <View>
-      <Text>Chat screens</Text>
-    </View>
+    <SafeAreaView>
+      <Header title="Chat" />
+      <ChatList />
+    </SafeAreaView>
   );
 };
 
