@@ -3,7 +3,6 @@ import tw from "tailwind-rn";
 import { View, Text, Image } from "react-native";
 
 const ReceiverMessage = ({ message }) => {
-  console.log("SODUIFJSDOFIJSDFOIJ", message);
   return (
     <View
       style={[

@@ -22,7 +22,7 @@ import {
   orderBy,
 } from "@firebase/firestore";
 import useAuth from "../hooks/useAuth";
-import Header from "../components/Header";
+import ChatHeader from "../components/ChatHeader";
 import SenderMessage from "../components/SenderMessage";
 import ReceiverMessage from "../components/ReceiverMessage";
 import { getMatchedUserInfo } from "../utils/utils";
@@ -47,13 +47,10 @@ const MessageScreen = () => {
         ),
         (snapshot) =>
           setMessages(
-            snapshot?.docs?.map(
-              (doc) =>
-                console.log(doc.data()) || {
-                  id: doc?.id,
-                  ...doc.data(),
-                }
-            )
+            snapshot?.docs?.map((doc) => ({
+              id: doc?.id,
+              ...doc.data(),
+            }))
           )
       ),
     [matchDetails, db]
@@ -73,7 +70,7 @@ const MessageScreen = () => {
 
   return (
     <SafeAreaView style={tw("flex-1")}>
-      <Header
+      <ChatHeader
         title={getMatchedUserInfo(matchDetails?.users, user?.uid).displayName}
         callEnabled
       />

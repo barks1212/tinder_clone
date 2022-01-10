@@ -37,8 +37,7 @@ export const dummyData = [
     id: 456,
   },
   {
-    firstName: "Elon",
-    lastName: "Musk",
+    displayName: "Elon Musk",
     job: "Psychopath",
     photoURL:
       "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQU2JRbbl3LBOm_an3eI5iplFhOoLESyBwUfmWDO49BS1EYuGUE",

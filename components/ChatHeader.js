@@ -5,7 +5,7 @@ import { Foundation, Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { colours } from "../constants";
 
-const Header = ({ title, callEnabled }) => {
+const ChatHeader = ({ title, callEnabled }) => {
   const navigation = useNavigation();
 
   return (
@@ -29,4 +29,4 @@ const Header = ({ title, callEnabled }) => {
   );
 };
 
-export default Header;
+export default ChatHeader;

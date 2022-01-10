@@ -11,20 +11,15 @@ import {
   where,
   serverTimestamp,
 } from "@firebase/firestore";
-import {
-  View,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-} from "react-native";
+import { View, SafeAreaView, TouchableOpacity } from "react-native";
 import tw from "tailwind-rn";
-import { Entypo, Ionicons } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 import Swiper from "react-native-deck-swiper";
+import HomeScreenHeader from "../components/HomeScreenHeader";
+import SwipeCard from "../components/SwipeCard";
 import { db } from "../firebase";
 import useAuth from "../hooks/useAuth";
-import { colours, styleSheets, dummyData } from "../constants";
+import { colours } from "../constants";
 import { generateId } from "../utils/utils";
 
 const HomeScreen = () => {
@@ -135,27 +130,7 @@ const HomeScreen = () => {
 
   return (
     <SafeAreaView style={tw("flex-1")}>
-      <View style={tw("flex-row items-center justify-between px-5")}>
-        <TouchableOpacity onPress={logout}>
-          <Image
-            style={tw("h-10 w-10 rounded-full")}
-            source={{ uri: user?.photoURL }}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Modal")}>
-          <Image
-            style={tw("h-14 w-14")}
-            source={require("../assets/tinder-logo.png")}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Chat")}>
-          <Ionicons
-            name="chatbubbles-sharp"
-            size={30}
-            color={colours.tinderPink}
-          />
-        </TouchableOpacity>
-      </View>
+      <HomeScreenHeader navigation={navigation} user={user} logout={logout} />
 
       <View style={tw("flex-1 -mt-6")}>
         <Swiper
@@ -194,52 +169,7 @@ const HomeScreen = () => {
               },
             },
           }}
-          renderCard={(card) =>
-            card ? (
-              <View
-                key={card.id}
-                style={tw("relative bg-white h-3/4 rounded-xl")}
-              >
-                <Image
-                  style={tw("absolute top-0 h-full w-full rounded-xl")}
-                  source={{ uri: card.photoURL }}
-                />
-                <View
-                  style={[
-                    tw(
-                      "absolute bottom-0 bg-white w-full flex-row justify-between items-center h-20 px-6 py-2 rounded-b-xl"
-                    ),
-                    styles.cardShadow,
-                  ]}
-                >
-                  <View>
-                    <Text style={tw("text-xl font-bold")}>
-                      {card.displayName}
-                    </Text>
-                    <Text>{card.job}</Text>
-                  </View>
-                  <Text style={tw("text-2xl font-bold")}>{card.age}</Text>
-                </View>
-              </View>
-            ) : (
-              <View
-                style={[
-                  tw(
-                    "relative bg-white h-3/4 rounded-xl justify-center items-center"
-                  ),
-                  styles.cardShadow,
-                ]}
-              >
-                <Text style={tw("font-bold pb-5")}>No more profiles</Text>
-                <Image
-                  style={tw("h-20 w-full")}
-                  height={100}
-                  width={100}
-                  source={{ uri: "https://links.papareact.com/6gb" }}
-                />
-              </View>
-            )
-          }
+          renderCard={(card) => <SwipeCard card={card} />}
         />
       </View>
       <View style={tw("flex flex-row justify-evenly")}>
@@ -265,5 +195,3 @@ const HomeScreen = () => {
 };
 
 export default HomeScreen;
-
-const styles = StyleSheet.create(styleSheets.cardShadows);
