@@ -3,10 +3,10 @@
 React Native app intended to be a direct imitation of the popular dating app, Tinder. 
 ### Tech
 
-React Native + Expo
-Swiper
-Firebase/Firestore
-Tailwind.
+- React Native + Expo
+- Swiper
+- Firebase/Firestore
+- Tailwind.
 
 <p float="left">
 <img src="https://p39.f2.n0.cdn.getcloudapp.com/items/eDulxpjX/26b946b0-fbb1-47f3-84fb-de39c2294192.jpg?v=e0b0d417c5986dea054bfa0da5772bbd" height=500 />
