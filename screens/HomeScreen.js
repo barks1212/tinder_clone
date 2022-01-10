@@ -15,17 +15,16 @@ import {
   View,
   SafeAreaView,
   Text,
-  Button,
   TouchableOpacity,
   Image,
   StyleSheet,
 } from "react-native";
 import tw from "tailwind-rn";
-import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
+import { Entypo, Ionicons } from "@expo/vector-icons";
 import Swiper from "react-native-deck-swiper";
 import { db } from "../firebase";
 import useAuth from "../hooks/useAuth";
-import { colours, styleSheets } from "../constants";
+import { colours, styleSheets, dummyData } from "../constants";
 import { generateId } from "../utils/utils";
 
 const HomeScreen = () => {

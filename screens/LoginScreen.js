@@ -1,16 +1,10 @@
-import React, { useLayoutEffect } from "react";
-import {
-  View,
-  Text,
-  Button,
-  ImageBackground,
-  TouchableOpacity,
-} from "react-native";
+import React from "react";
+import { View, Text, ImageBackground, TouchableOpacity } from "react-native";
 import tw from "tailwind-rn";
 import useAuth from "../hooks/useAuth";
 
 const LoginScreen = () => {
-  const { signInWithGoogle, loading } = useAuth();
+  const { signInWithGoogle } = useAuth();
 
   return (
     <View style={tw("flex-1")}>
