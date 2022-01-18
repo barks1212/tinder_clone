@@ -10,6 +10,8 @@ const ChatList = () => {
   const [matches, setMatches] = useState([]);
   const { user } = useAuth();
 
+  // this is a comment to check rebasing works
+
   useEffect(() => {
     onSnapshot(
       query(
