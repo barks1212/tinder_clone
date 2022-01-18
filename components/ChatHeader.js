@@ -8,8 +8,6 @@ import { colours } from "../constants";
 const ChatHeader = ({ title, callEnabled }) => {
   const navigation = useNavigation();
 
-  // this is a comment to check rebasing works
-
   return (
     <View style={tw("p-2 flex-row items-center justify-between")}>
       <View style={tw("flex flex-row items-center")}>
